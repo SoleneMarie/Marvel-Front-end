@@ -7,6 +7,7 @@ import Comics from "./Routes/Comics";
 import ComicsCharacters from "./Routes/Comics-characters";
 import Comic from "./Routes/Comic";
 import Character from "./Routes/Character";
+import Favorites from "./Routes/Favorites";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/comics/:characterId" element={<ComicsCharacters />} />
           <Route path="/comic/:id" element={<Comic />} />
           <Route path="/character/:id" element={<Character />} />;
+          <Route path="/favorites" element={<Favorites />} />;
         </Routes>
       </Router>
     </>

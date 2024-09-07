@@ -14,13 +14,13 @@ const Characters = () => {
   const [pagenum, setPagenum] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [cookieArr, setCookieArr] = useState([]);
+  const [characSearch, setCharacSearch] = useState("");
   let limit = 20;
   let copyArr = [];
   let count = 0;
 
   useEffect(() => {
     if (Cookies.getItem("favorite-characs")) {
-      console.log(Cookies.getItem("favorite-characs"));
       setCookieArr(Cookies.getItem("favorite-characs").split(","));
     }
   }, []);
@@ -29,7 +29,7 @@ const Characters = () => {
     const getCharacsFunc = async () => {
       try {
         const data = await axios.get(
-          `http://localhost:3000/characters?limit=${limit}&page=${pagenum}`
+          `http://localhost:3000/characters?name=${characSearch}&limit=${limit}&page=${pagenum}`
         );
         count = data.data.count;
 
@@ -46,7 +46,8 @@ const Characters = () => {
       }
     };
     getCharacsFunc();
-  }, [pagenum]);
+  }, [pagenum] && [characSearch]);
+
   useEffect(() => {
     if (cookieArr.length > 0) {
       Cookies.setItem("favorite-characs", [cookieArr], { expires: 30 });
@@ -57,7 +58,7 @@ const Characters = () => {
   console.log(characters);
 
   const CookieArrSet = (id) => {
-    if (!copyArr.includes(id)) {
+    if (!cookieArr.includes(id)) {
       copyArr = [...cookieArr];
       copyArr.push(id);
       setCookieArr(copyArr);
@@ -84,6 +85,17 @@ const Characters = () => {
             </div>
           </section>
           <section id="characters-list">
+            <section id="character-search">
+              <input
+                type="text"
+                id="searchCharacter"
+                name="searchCharacter"
+                placeholder="What are you looking for?"
+                onChange={(event) => {
+                  setCharacSearch(event.target.value);
+                }}
+              />
+            </section>
             {characters.map((item, index) => {
               let imgpath = `${item.thumbnail.path}/standard_xlarge.jpg`;
               return Number(index) % 2 === 0 ? (

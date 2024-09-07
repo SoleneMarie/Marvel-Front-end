@@ -46,19 +46,6 @@ const ComicsCharacters = ({}) => {
     getCharac();
   }, []);
 
-  /* Ma fonction pour récupérer tous les comics pour un id*/
-
-  /*const getDataItem = async (item) => {
-    try {
-      let response = await axios.get(`http://localhost:3000/comic/${item}`);
-      console.log("résultat de ma requête ==>" + response.data);
-      responseTitle = response.data.title;
-      console.log(responseTitle);
-    } catch (error) {
-      console.log(error);
-    }
-  };*/
-
   return (
     <>
       {console.log(comicsData)}
