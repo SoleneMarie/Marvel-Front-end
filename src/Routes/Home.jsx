@@ -13,12 +13,19 @@ const Home = ({ token }) => {
                 <img src={marvelLogo} alt="logo de marvel" />
               </div>
               <div id="buttons-menu">
-                <button className="home-button">
-                  Find your favorite characters
-                </button>
-                <button className="home-button">
-                  Discover new (and old) comics
-                </button>
+                <Link to="/characters">
+                  <button className="home-button">
+                    Find your favorite characters
+                  </button>
+                </Link>
+                <Link
+                  to="/comics
+               "
+                >
+                  <button className="home-button">
+                    Discover new (and old) comics
+                  </button>
+                </Link>
                 {token === true ? (
                   <button id="logout-button">Log out</button>
                 ) : (

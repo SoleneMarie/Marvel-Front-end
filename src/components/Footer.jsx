@@ -1,7 +1,11 @@
+import Footerstan from "../pictures/Footerstan.png";
+
 const Footer = () => {
   return (
     <>
-      <p>C'est le footer!</p>
+      <div id="footer-pic">
+        <img src={Footerstan} />
+      </div>
     </>
   );
 };
