@@ -21,7 +21,7 @@ const Favorites = () => {
         for (let i = 0; i < CookiesArrComics.length; i++) {
           let id = CookiesArrComics[i];
           let response = await axios.get(
-            `http://site--marvel-backend--dk2vmt6fnyjp.code.run/comic/${id}`
+            `https://site--marvel-backend--dk2vmt6fnyjp.code.run/comic/${id}`
           );
           comics.push(response.data);
         }
@@ -42,7 +42,7 @@ const Favorites = () => {
         for (let i = 0; i < CookiesArrCharacs.length; i++) {
           let id = CookiesArrCharacs[i];
           let response = await axios.get(
-            `http://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${id}`
+            `https://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${id}`
           );
           characs.push(response.data);
         }

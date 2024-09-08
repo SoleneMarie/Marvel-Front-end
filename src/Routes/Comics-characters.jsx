@@ -20,7 +20,7 @@ const ComicsCharacters = ({}) => {
       for (let index = 0; index < ids.length; index++) {
         const id = ids[index];
         const comic = await axios.get(
-          `http://site--marvel-backend--dk2vmt6fnyjp.code.run/comic/${id}`
+          `https://site--marvel-backend--dk2vmt6fnyjp.code.run/comic/${id}`
         );
         comics.push(comic.data);
       }
@@ -35,7 +35,7 @@ const ComicsCharacters = ({}) => {
     const getCharac = async () => {
       try {
         const response = await axios.get(
-          `http://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${idChar}`
+          `https://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${idChar}`
         );
         setData(response.data);
         const comicsIds = response.data.comics;

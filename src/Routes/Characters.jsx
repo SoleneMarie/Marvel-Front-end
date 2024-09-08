@@ -30,7 +30,7 @@ const Characters = () => {
     const getCharacsFunc = async () => {
       try {
         const data = await axios.get(
-          `http://site--marvel-backend--dk2vmt6fnyjp.code.run/characters?name=${characSearch}&limit=${limit}&page=${pagenum}`
+          `https://site--marvel-backend--dk2vmt6fnyjp.code.run/characters?name=${characSearch}&limit=${limit}&page=${pagenum}`
         );
         count = data.data.count;
 

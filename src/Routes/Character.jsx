@@ -15,7 +15,7 @@ const Character = () => {
     const getCharac = async () => {
       try {
         const response = await axios.get(
-          `http://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${idCharac}`
+          `https://site--marvel-backend--dk2vmt6fnyjp.code.run/character/${idCharac}`
         );
         setData(response.data);
         setLoading(false);
