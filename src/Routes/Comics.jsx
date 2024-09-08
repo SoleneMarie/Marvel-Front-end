@@ -29,7 +29,7 @@ const Comics = () => {
     const getComics = async () => {
       try {
         const response = await axios.get(
-          `site--marvel-backend--dk2vmt6fnyjp.code.run/comics?title=${comicSearch}&limit=${limitcomic}&page=${pagenumcomic}`
+          `http://site--marvel-backend--dk2vmt6fnyjp.code.run/comics?title=${comicSearch}&limit=${limitcomic}&page=${pagenumcomic}`
         );
         countcomic = response.data.count;
         console.log(comicSearch);
