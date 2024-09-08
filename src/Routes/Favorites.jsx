@@ -20,7 +20,9 @@ const Favorites = () => {
       if (CookiesArrComics.length > 0) {
         for (let i = 0; i < CookiesArrComics.length; i++) {
           let id = CookiesArrComics[i];
-          let response = await axios.get(`http://localhost:3000/comic/${id}`);
+          let response = await axios.get(
+            `site--marvel-backend--dk2vmt6fnyjp.code.run/comic/${id}`
+          );
           comics.push(response.data);
         }
         setDataComics(comics);
@@ -40,7 +42,7 @@ const Favorites = () => {
         for (let i = 0; i < CookiesArrCharacs.length; i++) {
           let id = CookiesArrCharacs[i];
           let response = await axios.get(
-            `http://localhost:3000/character/${id}`
+            `site--marvel-backend--dk2vmt6fnyjp.code.run/character/${id}`
           );
           characs.push(response.data);
         }
