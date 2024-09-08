@@ -7,6 +7,7 @@ import ArrowLeft from "../pictures/ArrowLeft.png";
 import ArrowRight from "../pictures/ArrowRight.png";
 import axios from "axios";
 import Cookies from "js-cookies";
+import { FaShieldHeart } from "react-icons/fa6";
 
 const Characters = () => {
   const [loading, setLoading] = useState(true);
@@ -67,24 +68,23 @@ const Characters = () => {
 
   return (
     <>
-      <Header />
-      {loading === false ? (
-        <main>
-          <section className="Stan-quote">
-            <div className="pic-quote">
-              <img src={Hero2stan} alt="Stan Lee picture" />
-            </div>
-            <div className="quotation">
-              <p>
-                "That personn who helps others, simply because it should or must
-                be done, and because it's the right thing to do, is indeed
-                without a doubt, a real superhero."
-                <br />
-                <span>Stan Lee</span>
-              </p>
-            </div>
-          </section>
-          <section id="characters-list">
+      <section className="characters-bk">
+        <Header />
+        {loading === false ? (
+          <main>
+            <section className="Stan-quote">
+              <div className="pic-quote">
+                <img src={Hero2stan} alt="Stan Lee picture" />
+              </div>
+              <div className="quotation">
+                <p>
+                  "That personn who helps others, simply because it should or
+                  must be done, and because it's the right thing to do, is
+                  indeed without a doubt, a real superhero."
+                  <p className="stanLee">Stan Lee</p>
+                </p>
+              </div>
+            </section>
             <section id="character-search">
               <input
                 type="text"
@@ -96,74 +96,106 @@ const Characters = () => {
                 }}
               />
             </section>
-            {characters.map((item, index) => {
-              let imgpath = `${item.thumbnail.path}/standard_xlarge.jpg`;
-              return Number(index) % 2 === 0 ? (
-                <section className="leftsec" key={item._id}>
-                  <p>Section gauche</p>
-                  <div className="character-pic">
-                    <img src={imgpath} />
-                    <div onClick={() => CookieArrSet(item._id)}>like</div>
-                  </div>
-                  <div className="character-info">
-                    {item.name && <h2>{item.name}</h2>}
-                    {item.description && <p>{item.description}</p>}
-                  </div>
-                  <div className="character-comics-link">
-                    <p>
-                      Enjoy <span>{item.name}</span> comics? Maybe you will find
-                      a new (or old) one here!
-                    </p>
-                    <Link to={"/comics/" + item._id} key={item.id}>
-                      <button>{item.name} comics</button>
-                    </Link>
-                  </div>
-                </section>
+            <section id="characters-list">
+              {characters.map((item, index) => {
+                let imgpath = "";
+                if (item.thumbnail.path) {
+                  imgpath = `${item.thumbnail.path}/standard_xlarge.jpg`;
+                }
+                return Number(index) % 2 === 0 ? (
+                  <section className="leftsec" key={item._id}>
+                    <div className="character-pic">
+                      {imgpath && <img src={imgpath} />}
+                      <button onClick={() => CookieArrSet(item._id)}>
+                        <FaShieldHeart size={30} />
+                      </button>
+                    </div>
+                    <section className="allcharc-infos">
+                      <div className="character-info">
+                        {item.name && <h2>{item.name}</h2>}
+                        {item.description && <p>{item.description}</p>}
+                      </div>
+                      <div className="character-comics-link">
+                        <p>
+                          Enjoy <span>{item.name}</span> comics? <br />
+                          Maybe you will find a new (or old) one here!
+                        </p>
+                        <Link
+                          to={"/comics/" + item._id}
+                          state={{ name: item.name, comicsArr: item.comics }}
+                          key={item.id}
+                        >
+                          <button>{item.name} comics</button>
+                        </Link>
+                      </div>
+                    </section>
+                  </section>
+                ) : (
+                  <section className="rightsec" key={item._id}>
+                    <div className="character-pic">
+                      {imgpath && <img src={imgpath} />}
+                      <button onClick={() => CookieArrSet(item._id)}>
+                        <FaShieldHeart size={30} />
+                      </button>
+                    </div>
+                    <section className="allcharc-infos">
+                      <div className="character-info">
+                        {item.name && <h2>{item.name}</h2>}
+                        {item.description && <p>{item.description}</p>}
+                      </div>
+                      <div className="character-comics-link">
+                        <p>
+                          Enjoy <span>{item.name}</span> comics?
+                          <br /> Maybe you will find a new (or old) one here!
+                        </p>
+                        <Link
+                          to={"/comics/" + item._id}
+                          state={{ name: item.name, comicsArr: item.comics }}
+                          key={item.id}
+                        >
+                          <button>{item.name} comics</button>
+                        </Link>
+                      </div>
+                    </section>
+                  </section>
+                );
+              })}
+            </section>
+            <div className="arrows">
+              {pagenum === 1 ? (
+                <div className="arrow-right">
+                  <img
+                    src={ArrowRight}
+                    onClick={() => setPagenum(pagenum + 1)}
+                  />
+                </div>
+              ) : pagenum === lastPage ? (
+                <div className="arrow-left">
+                  <img
+                    src={ArrowLeft}
+                    onClick={() => setPagenum(pagenum - 1)}
+                  />
+                </div>
               ) : (
-                <section className="leftsec" key={item._id}>
-                  <p>Section droite</p>
-                  <div className="character-pic">
-                    <img src={imgpath} />
-                  </div>
-                  <div className="character-info">
-                    {item.name && <h2>{item.name}</h2>}
-                    {item.description && <p>{item.description}</p>}
-                  </div>
-                  <div className="character-comics-link">
-                    <p>
-                      Enjoy <span>{item.name}</span> comics? Maybe you will find
-                      a new (or old) one here!
-                    </p>
-                    <Link
-                      to={"/comics/" + item._id}
-                      state={{ name: item.name, comicsArr: item.comics }}
-                      key={item.id}
-                    >
-                      <button>{item.name} comics</button>
-                    </Link>
-                  </div>
-                </section>
-              );
-            })}
-          </section>
-          <div className="arrows">
-            {pagenum === 1 ? (
-              <img src={ArrowRight} onClick={() => setPagenum(pagenum + 1)} />
-            ) : pagenum === lastPage ? (
-              <img src={ArrowLeft} onClick={() => setPagenum(pagenum - 1)} />
-            ) : (
-              <div className="botharrows">
-                <img src={ArrowLeft} onClick={() => setPagenum(pagenum - 1)} />
-                <img src={ArrowRight} onClick={() => setPagenum(pagenum + 1)} />
-              </div>
-            )}
-          </div>
-        </main>
-      ) : (
-        <p>En cours de chargement...</p>
-      )}
+                <div className="botharrows">
+                  <img
+                    src={ArrowLeft}
+                    onClick={() => setPagenum(pagenum - 1)}
+                  />
+                  <img
+                    src={ArrowRight}
+                    onClick={() => setPagenum(pagenum + 1)}
+                  />
+                </div>
+              )}
+            </div>
+          </main>
+        ) : (
+          <p>En cours de chargement...</p>
+        )}
 
-      <Footer />
+        <Footer />
+      </section>
     </>
   );
 };
