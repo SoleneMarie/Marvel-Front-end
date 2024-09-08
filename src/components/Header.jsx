@@ -6,7 +6,7 @@ const Header = () => {
     <>
       <header>
         <section className="logo-sec">
-          <Link to="/home">
+          <Link to="/">
             <img src={MarvelLogo} alt="logo-marvel" />
           </Link>
         </section>
