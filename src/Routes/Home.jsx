@@ -5,7 +5,7 @@ import marvelLogo from "../pictures/marvel-logo-mini.png";
 const Home = ({ token }) => {
   return (
     <>
-      <main className="black-bk">
+      <main id="main-home">
         <section className="width-lim">
           <section id="black-menu">
             <div id="logo-div">
