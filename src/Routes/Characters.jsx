@@ -47,7 +47,7 @@ const Characters = () => {
       }
     };
     getCharacsFunc();
-  }, [pagenum] && [characSearch]);
+  }, [pagenum, characSearch]);
 
   useEffect(() => {
     if (cookieArr.length > 0) {
@@ -81,8 +81,8 @@ const Characters = () => {
                   "That personn who helps others, simply because it should or
                   must be done, and because it's the right thing to do, is
                   indeed without a doubt, a real superhero."
-                  <p className="stanLee">Stan Lee</p>
                 </p>
+                <p className="stanLee">Stan Lee</p>
               </div>
             </section>
             <section id="character-search">
